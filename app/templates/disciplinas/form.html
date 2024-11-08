@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ form.nome.data or 'Nova Disciplina' }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>{{ form.nome.data or 'Nova Disciplina' }}</h1>
+    </div>
+
+    <form method="POST" class="row g-3">
+        {{ form.hidden_tag() }}
+
+        <div class="col-md-6">
+            <label for="nome" class="form-label">{{ form.nome.label.text }}</label>
+            {{ form.nome(class="form-control") }}
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-success">{{ form.submit.label.text }}</button>
+            <a href="{{ url_for('lista_disciplinas') }}" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

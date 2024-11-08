@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Página Inicial{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+    <h1 class="mb-4">Bem-vindo à Aplicação de Gerenciamento</h1>
+    <p class="lead">Escolha uma das entidades para gerenciar:</p>
+    
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-4">
+            <a href="{{ url_for('lista_alunos') }}" class="btn btn-primary btn-lg btn-block mb-3">Gerenciar Alunos</a>
+        </div>
+        <div class="col-md-4">
+            <a href="{{ url_for('lista_disciplinas') }}" class="btn btn-secondary btn-lg btn-block mb-3">Gerenciar Disciplinas</a>
+        </div>
+        <div class="col-md-4">
+            <a href="{{ url_for('lista_matriculas') }}" class="btn btn-success btn-lg btn-block mb-3">Gerenciar Matrículas</a>
+        </div>
+        <div class="col-md-4">
+            <a href="{{ url_for('selecionar_disciplina') }}" class="btn btn-info btn-lg btn-block mb-3">Ver Alunos por Disciplina</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

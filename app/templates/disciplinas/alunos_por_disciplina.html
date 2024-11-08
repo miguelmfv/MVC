@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Alunos Matriculados{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Alunos Matriculados na Disciplina: {{ disciplina.nome }}</h1>
+
+    {% if alunos %}
+        <table class="table table-hover mt-4">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome do Aluno</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for aluno in alunos %}
+                <tr>
+                    <td>{{ aluno.id }}</td>
+                    <td>{{ aluno.nome }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Nenhum aluno está matriculado nesta disciplina.</p>
+    {% endif %}
+
+    <a href="{{ url_for('lista_disciplinas') }}" class="btn btn-secondary mt-3">Voltar para Disciplinas</a>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Alunos{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Lista de Alunos</h1>
+        <a href="{{ url_for('novo_aluno') }}" class="btn btn-primary">Novo Aluno</a>
+    </div>
+
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for aluno in alunos %}
+            <tr>
+                <td>{{ aluno.id }}</td>
+                <td>{{ aluno.nome }}</td>
+                <td>
+                    <a href="{{ url_for('editar_aluno', id=aluno.id) }}" class="btn btn-warning btn-sm">Editar</a>
+                    <form action="{{ url_for('deletar_aluno', id=aluno.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja deletar?');">Deletar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

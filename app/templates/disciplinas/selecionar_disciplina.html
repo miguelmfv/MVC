@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Selecionar Disciplina{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Selecione a Disciplina</h1>
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+            {{ form.disciplina_id.label }}
+            {{ form.disciplina_id(class="form-select") }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">{{ form.submit.label }}</button>
+    </form>
+</div>
+{% endblock %}

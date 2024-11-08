@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Matrículas{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Lista de Matrículas</h1>
+        <a href="{{ url_for('nova_matricula') }}" class="btn btn-primary">Nova Matrícula</a>
+    </div>
+
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Aluno</th>
+                <th scope="col">Disciplinas</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for aluno in alunos %}
+            <tr>
+                <td>{{ aluno.nome }}</td>
+                <td>
+                    {% for disciplina in aluno.disciplinas %}
+                        {{ disciplina.nome }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for disciplina in aluno.disciplinas %}
+                    <form action="{{ url_for('deletar_matricula', aluno_id=aluno.id, disciplina_id=disciplina.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja deletar?');">Remover {{ disciplina.nome }}</button>
+                    </form>
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

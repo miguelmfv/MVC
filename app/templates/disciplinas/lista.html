@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Disciplinas{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Lista de Disciplinas</h1>
+        <a href="{{ url_for('nova_disciplina') }}" class="btn btn-primary">Nova Disciplina</a>
+    </div>
+
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nome da Disciplina</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for disciplina in disciplinas %}
+            <tr>
+                <td>{{ disciplina.id }}</td>
+                <td>{{ disciplina.nome }}</td>
+                <td>
+                    <a href="{{ url_for('editar_disciplina', id=disciplina.id) }}" class="btn btn-warning btn-sm">Editar</a>
+                    <form action="{{ url_for('deletar_disciplina', id=disciplina.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja deletar?');">Deletar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
